@@ -37,5 +37,5 @@ jobs:
             -Dsonar.projectName=My Awesome Project \
             -Dsonar.sources=. \
             -Dsonar.login=admin \
-            -Dsonar.password=qS)7VV2$5Rax
+            -Dsonar.password="qS)7VV2$5Rax"
 
