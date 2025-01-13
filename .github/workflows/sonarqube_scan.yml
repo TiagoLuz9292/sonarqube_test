@@ -1,0 +1,39 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run SonarQube scan
+      - name: Run SonarQube Scan
+        env:
+          SONAR_TOKEN: "sqa_14f32ec7641193ed17bc278997bca01823d21f2c"
+          SONAR_HOST_URL: "http://37.27.86.110:31566/"
+        run: |
+          npx sonarqube-scanner \
+            -Dsonar.projectKey=my_project \
+            -Dsonar.projectName=My Project \
+            -Dsonar.sources=.
+
