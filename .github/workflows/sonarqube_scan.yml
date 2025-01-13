@@ -1,39 +1,26 @@
-name: SonarQube Analysis
+name: Build
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+
 
 jobs:
-  sonarqube:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      # Check out the repository code
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # Set up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
         with:
-          node-version: '16'
-
-      # Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Run SonarQube scan
-      - name: Run SonarQube Scan
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: sonarsource/sonarqube-scan-action@master
         env:
-          SONAR_TOKEN: "squ_a7b65b8febf71ab0a90f4088e2df8b1eafdd4895"
-          SONAR_HOST_URL: "http://37.27.86.110:31566/"
-        run: |
-          npx sonarqube-scanner \
-            -Dsonar.projectKey=my-awesome-project \
-            -Dsonar.projectName=My Awesome Project \
-            -Dsonar.sources=. \
-            -Dsonar.login=squ_da2d737baa4693145f15aa6cac035f13b1c2dfc3
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # If you wish to fail your job when the Quality Gate is red, uncomment the
+      # following lines. This would typically be used to fail a deployment.
+      # - uses: sonarsource/sonarqube-quality-gate-action@master
+      #   timeout-minutes: 5
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
