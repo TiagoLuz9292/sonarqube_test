@@ -36,6 +36,4 @@ jobs:
             -Dsonar.projectKey=my-awesome-project \
             -Dsonar.projectName=My Awesome Project \
             -Dsonar.sources=. \
-            -Dsonar.login=admin \
-            -Dsonar.password=sonaradmin
-
+            -Dsonar.login=squ_da2d737baa4693145f15aa6cac035f13b1c2dfc3
