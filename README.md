@@ -1,1 +1,1 @@
-This is a test for   SonarQube scan
+This is a test for    SonarQube scan
