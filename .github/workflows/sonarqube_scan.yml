@@ -29,7 +29,7 @@ jobs:
       # Run SonarQube scan
       - name: Run SonarQube Scan
         env:
-          SONAR_TOKEN: "sqa_14f32ec7641193ed17bc278997bca01823d21f2c"
+          SONAR_TOKEN: "squ_a7b65b8febf71ab0a90f4088e2df8b1eafdd4895"
           SONAR_HOST_URL: "http://37.27.86.110:31566/"
         run: |
           npx sonarqube-scanner \
