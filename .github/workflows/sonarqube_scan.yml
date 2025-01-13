@@ -33,7 +33,9 @@ jobs:
           SONAR_HOST_URL: "http://37.27.86.110:31566/"
         run: |
           npx sonarqube-scanner \
-            -Dsonar.projectKey=my_project \
-            -Dsonar.projectName=My Project \
-            -Dsonar.sources=.
+            -Dsonar.projectKey=my-awesome-project \
+            -Dsonar.projectName=My Awesome Project \
+            -Dsonar.sources=. \
+            -Dsonar.login=admin \
+            -Dsonar.password=qS)7VV2$5Rax
 
